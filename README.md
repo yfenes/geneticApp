@@ -1,2 +1,2 @@
 # geneticApp
-Find the optimum DNA (a sentence) with simple genetic algorithm.
+A web app trying to find the optimum DNA (a sentence) over generations with simple genetic algorithm.
