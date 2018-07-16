@@ -29,7 +29,6 @@ export PATH=$PATH:/Library/Frameworks/Python.framework/Versions/3.7/bin
 export PATH=$PATH:/Library/Frameworks/Python.framework/Versions/3.6/bin
 ```
 
-
 **If you don't have the repository clone it:**
 
 ```
@@ -48,7 +47,6 @@ pip3 install virtualenv
 
 ```
 
-
 **Create the virtual environment**
 
 ```
@@ -61,14 +59,14 @@ virtualenv geneticappenv
 source geneticappenv/bin/activate
 ```
 
-**Install django**
+**Install Django**
 
 ```
 pip install Django
 ```
 
 
-**Make sure that django is installed**
+**Make sure that Django is installed**
 
 ```
 pip freeze | grep Django
