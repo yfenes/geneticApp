@@ -82,6 +82,7 @@ celerybeat-schedule
 *.sage.py
 
 # Environments
+geneticappenv/
 .env
 .venv
 env/
@@ -102,3 +103,10 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+
+# Ignore idea
+.idea*
+
+# Ignore DS_STORE
+.DS_STORE*
