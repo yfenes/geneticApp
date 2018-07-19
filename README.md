@@ -59,10 +59,19 @@ virtualenv geneticappenv
 source geneticappenv/bin/activate
 ```
 
-**Install Django**
+**Install Django and numpy via requirements or pip3**
+
+either
+
+```
+pip install -r requirements.txt
+```
+
+or 
 
 ```
 pip install Django
+pip install numpy
 ```
 
 
