@@ -35,7 +35,7 @@ def detail(request, optimumDNA_id):
     # Initialize the population
     population = create_population(pop_size, opt.DNA, all_chars)
 
-    # Training
+    # Training the population
     population, sorted_sentences, sorted_scores, bests = train_population(population, n_gen, opt.DNA,
                                                                           mut_percentage, all_chars, see_n_best)
 
