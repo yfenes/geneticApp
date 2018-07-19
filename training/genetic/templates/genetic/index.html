@@ -1,0 +1,9 @@
+{% if latest_opt_list %}
+    <ul>
+    {% for opt in latest_opt_list %}
+        <li><a href="/genetic/{{ opt.id }}/detail/">{{ opt.DNA }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No optimumDNA's are available.</p>
+{% endif %}

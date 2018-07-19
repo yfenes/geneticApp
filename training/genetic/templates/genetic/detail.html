@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OptDNA_{{opt.id}}</title>
+<body>
+    <p>OptimumDNA with id {{opt.id}} is: "{{opt}}"</p>
+
+    <p> Length of the sentence: {{opt_len}}</p>
+
+    <p> Population size: {{pop_size}}</p>
+
+    <p> Best DNAs in generation {{n_gen}}</p>
+
+    <ul>
+    {% for ind,score in population %}
+        <li>{{ score }} : {{ ind }}</li>
+    {% endfor %}
+    </ul>
+
+    <ul>
+    {% for score in scores %}
+        <li>{{ score }}</li>
+    {% endfor %}
+    </ul>
+</body>
+</head>
+<body>
+
+</body>
+</html>
