@@ -22,6 +22,6 @@ urlpatterns = [
     path('genetic/', views.greetings, name='greetings'),
     path('genetic/index', views.index, name='index'),
     path('genetic/<int:optimumDNA_id>/detail/', views.detail, name='detail'),
-    path('genetic/<int:optimumDNA_id>/results/', views.results, name='results'),
+    #path('genetic/<int:optimumDNA_id>/results/', views.results, name='results'),
     path('admin/', admin.site.urls),
 ]

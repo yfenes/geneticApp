@@ -26,7 +26,7 @@ def detail(request, optimumDNA_id):
     if len(opt.DNA) == 0:
         return HttpResponse("Length of the OptimumDNA is zero. So, unfortunately, there is nothing to show.")
 
-    n_gen = 10
+    n_gen = 30
     pop_size = 1000
     mut_percentage = 0
     see_n_best = 20
@@ -39,7 +39,6 @@ def detail(request, optimumDNA_id):
     population, sorted_sentences, sorted_scores, bests = train_population(population, n_gen, opt.DNA,
                                                                           mut_percentage, all_chars, see_n_best)
 
-
     return render(request, 'genetic/detail.html', {'opt': opt, 'best_of_population': bests,
                                                    'n_gen': n_gen, 'opt_len': len(opt.DNA),
                                                    'pop_size': pop_size})
@@ -48,13 +47,8 @@ def detail(request, optimumDNA_id):
 def greetings(request):
     return HttpResponse("Hello, world. You're at the genetic greetings page.")
 
-
 def results(request, optimumDNA_id):
     opts = OptimumDNA.objects.all()
     response = '\n'.join([o.DNA for o in opts])
-    print(response)
 
     return HttpResponse(response)
-
-    # response = "You're looking at the results of population with OptimumDNA %s."
-    # return HttpResponse(response % optimumDNA_id)
