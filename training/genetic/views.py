@@ -32,13 +32,13 @@ def detail(request, optimumDNA_id):
     mutation_percentage = 0
     see_n_best = 20
 
+    # Initialize the population
     population = create_population(pop_size, opt.DNA, all_chars)
-    list_of_scores, sorted_scores, sorted_sentences = [], [], []
 
+    # Training
     for i in range(n_gen):
-        # Selection (by fitness scores)
+        # Selection (finding fitness scores)
         list_of_scores, prob_dist = selection(population, opt.DNA)
-        sorted_scores, sorted_sentences = sort_together(list_of_scores, population)
 
         # Reproduction (matching, crossover and mutation)
         avg_generation_score, new_population = reproduce(population, list_of_scores, prob_dist, all_chars,
@@ -46,16 +46,13 @@ def detail(request, optimumDNA_id):
         # Replace
         population = new_population
 
-
-    list_of_scores, prob_dist = selection(population, opt.DNA)
-
+    # See the best DNAs in final generation
+    list_of_scores, _ = selection(population, opt.DNA)
+    sorted_scores, sorted_sentences = sort_together(list_of_scores, population)
     best_of_population = zip(sorted_sentences[:see_n_best], sorted_scores[:see_n_best])
 
-    for i in range(5):
-        print(sorted_scores[i],sorted_sentences[i])
-
     return render(request, 'genetic/detail.html', {'opt': opt, 'best_of_population': best_of_population,
-                                                   'n_gen':n_gen, 'opt_len': len(opt.DNA),
+                                                   'n_gen': n_gen, 'opt_len': len(opt.DNA),
                                                    'pop_size': pop_size})
 
 
