@@ -80,3 +80,22 @@ def reproduce(population, list_of_scores, prob_dist, all_chars, mutation_percent
 def sort_together(list1,list2):
     list1, list2 = zip(*sorted(zip(list1, list2), reverse=True))
     return list1, list2
+
+
+def train_population(population, n_gen, opt_dna_string, mutation_percentage, all_chars, see_n_best):
+    for i in range(n_gen):
+        # Selection (finding fitness scores)
+        list_of_scores, prob_dist = selection(population, opt_dna_string)
+
+        # Reproduction (matching, crossover and mutation)
+        avg_generation_score, new_population = reproduce(population, list_of_scores, prob_dist, all_chars,
+                                                         mutation_percentage)
+        # Replace
+        population = new_population
+
+    # See the best DNAs in final generation
+    list_of_scores, _ = selection(population, opt_dna_string)
+    sorted_scores, sorted_sentences = sort_together(list_of_scores, population)
+    best_of_population = zip(sorted_sentences[:see_n_best], sorted_scores[:see_n_best])
+
+    return population, sorted_sentences, sorted_scores, best_of_population
