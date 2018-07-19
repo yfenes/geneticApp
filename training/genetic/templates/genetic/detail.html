@@ -10,19 +10,18 @@
 
     <p> Population size: {{pop_size}}</p>
 
-    <p> Best DNAs in generation {{n_gen}}</p>
+    <p> Best DNAs in generation: {{n_gen}}</p>
 
     <ul>
-    {% for ind,score in population %}
-        <li>{{ score }} : {{ ind }}</li>
+    {% for indiv in best_of_population %}
+        <li>{{ indiv.1 }}/{{opt_len}} : {{ indiv.0 }}</li>
     {% endfor %}
     </ul>
 
-    <ul>
-    {% for score in scores %}
-        <li>{{ score }}</li>
-    {% endfor %}
-    </ul>
+
+
+
+
 </body>
 </head>
 <body>

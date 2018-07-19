@@ -26,27 +26,35 @@ def detail(request, optimumDNA_id):
     if len(opt.DNA) == 0:
         return HttpResponse("Length of the OptimumDNA is zero. So, unfortunately, there is nothing to show.")
 
-    n_gen = 30
+    n_gen = 10
     pop_size = 1000
     all_chars = string.ascii_lowercase + " "
-    mutation_percentage = 0.01
+    mutation_percentage = 0
+    see_n_best = 20
 
     population = create_population(pop_size, opt.DNA, all_chars)
-    sorted_scores, sorted_sentences = [], []
+    list_of_scores, sorted_scores, sorted_sentences = [], [], []
 
     for i in range(n_gen):
-        # Selection
+        # Selection (by fitness scores)
         list_of_scores, prob_dist = selection(population, opt.DNA)
         sorted_scores, sorted_sentences = sort_together(list_of_scores, population)
 
-        # Reproduction
+        # Reproduction (matching, crossover and mutation)
         avg_generation_score, new_population = reproduce(population, list_of_scores, prob_dist, all_chars,
                                                          mutation_percentage)
         # Replace
         population = new_population
 
-    best_of_population = zip(sorted_sentences[:20], sorted_scores[:20])
-    return render(request, 'genetic/detail.html', {'opt': opt, 'population': best_of_population,
+
+    list_of_scores, prob_dist = selection(population, opt.DNA)
+
+    best_of_population = zip(sorted_sentences[:see_n_best], sorted_scores[:see_n_best])
+
+    for i in range(5):
+        print(sorted_scores[i],sorted_sentences[i])
+
+    return render(request, 'genetic/detail.html', {'opt': opt, 'best_of_population': best_of_population,
                                                    'n_gen':n_gen, 'opt_len': len(opt.DNA),
                                                    'pop_size': pop_size})
 
